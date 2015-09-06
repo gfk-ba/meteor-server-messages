@@ -1,4 +1,4 @@
-describe('ServerMessages', function () {
+describe('ServerMessages - Unit tests', function () {
   describe('#constructor', function () {
     var sandbox;
 
@@ -6,6 +6,10 @@ describe('ServerMessages', function () {
       sandbox = sinon.sandbox.create();
 
       sandbox.stub(Mongo, 'Collection');
+
+      if(Meteor.isServer) {
+        sandbox.stub(Meteor, 'publish');
+      }
     });
 
     afterEach(function () {

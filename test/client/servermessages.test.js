@@ -1,21 +1,43 @@
-describe('ServerMessages - client', function () {
-  describe('#constructor', function () {
-    var sandbox;
+describe('ServerMessages - Unit tests', function () {
+  var sandbox;
 
-    beforeEach(function () {
-      sandbox = sinon.sandbox.create();
+  beforeEach(function () {
+    sandbox = sinon.sandbox.create();
 
-      sandbox.stub(Mongo, 'Collection');
-      sandbox.stub(Meteor, 'subscribe');
+    sandbox.stub(Mongo, 'Collection').returns({
+      find: sandbox.stub().returns({
+        observe: sandbox.stub()
+      })
     });
-
-    afterEach(function () {
-      sandbox.restore();
-    });
-
+    sandbox.stub(Meteor, 'subscribe');
   });
 
-  it('Should do things', function () {
-      expect(true).to.equal(true);
+  afterEach(function () {
+    sandbox.restore();
   });
-})
+
+  describe('#listen', function () {
+    it('Should create a channelListener for the given channel', function () {
+      var instance = new ServerMessages(),
+        testChannel = 'test123',
+        testHandler = function () {
+
+        };
+
+      instance.listen(testChannel, testHandler);
+
+      expect(instance._listeners[testChannel]).to.exist;
+      expect(instance._listeners[testChannel]).to.be.instanceOf(ChannelListener);
+    });
+
+    it('Should add the given handler to the handlers of the channel listener', function () {
+      var instance = new ServerMessages(),
+        testChannel = 'test123',
+        testHandler = function () {};
+
+      instance.listen(testChannel, testHandler);
+
+      expect(instance._listeners[testChannel].handlers[0]).to.equal(testHandler);
+    });
+  });
+});

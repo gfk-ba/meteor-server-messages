@@ -1,12 +1,8 @@
 Package.describe({
   name: 'gfk:server-messages',
-  version: '0.0.1',
-  // Brief, one-line summary of the package.
-  summary: '',
-  // URL to the Git repository containing the source code for this package.
-  git: '',
-  // By default, Meteor will default to using README.md for documentation.
-  // To avoid submitting documentation, set this field to null.
+  version: '1.0.0',
+  summary: 'Add server to client mediator',
+  git: 'https://github.com/gfk-ba/meteor-server-messages',
   documentation: 'README.md'
 });
 
@@ -14,7 +10,8 @@ Package.onUse(function(api) {
   api.versionsFrom('1.1.0.3');
 
   api.use([
-    'mongo'
+    'mongo',
+    'underscore'
   ]);
 
   api.use([
@@ -22,18 +19,21 @@ Package.onUse(function(api) {
   ], 'client');
 
   api.addFiles([
-    'shared/servermessages.js'
+    'shared/serverMessages.js'
   ]);
 
   api.addFiles([
-    'client/servermessages.js'
+    'client/channelListener.js',
+    'client/serverMessages.js'
   ], 'client');
 
   api.addFiles([
-    'server/servermessages.js'
+    'server/serverMessages.js'
   ], 'server');
 
   api.export('ServerMessages');
+
+  api.export('ChannelListener', {testOnly:true});
 });
 
 Package.onTest(function(api) {
@@ -45,14 +45,14 @@ Package.onTest(function(api) {
     'practicalmeteor:chai']);
 
   api.addFiles([
-    'test/shared/servermessages.test.js'
+    'test/shared/serverMessages.test.js'
   ]);
 
   api.addFiles([
-    'test/client/servermessages.test.js'
+    'test/client/serverMessages.test.js'
   ], 'client');
 
   api.addFiles([
-    'test/server/servermessages.test.js'
+    'test/server/serverMessages.test.js'
   ], 'server');
 });
