@@ -1,4 +1,4 @@
-.PHONY: build test publish
+.PHONY: test publish
 
 test:
 	meteor test-packages --velocity --driver-package respondly:test-reporter ./
