@@ -1,4 +1,4 @@
-var MAX_TIMESTAMP_AGE = 100;
+var MAX_TIMESTAMP_AGE = 250;
 
 _.extend(ServerMessages.prototype, {
   _publishMessages: function (publishInstance, channel) {

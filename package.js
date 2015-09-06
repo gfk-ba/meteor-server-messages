@@ -1,6 +1,6 @@
 Package.describe({
   name: 'gfk:server-messages',
-  version: '1.0.0',
+  version: '1.0.1',
   summary: 'Add server to client mediator',
   git: 'https://github.com/gfk-ba/meteor-server-messages',
   documentation: 'README.md'
