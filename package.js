@@ -14,10 +14,6 @@ Package.onUse(function(api) {
     'underscore'
   ]);
 
-  api.use([
-    'gfk:mediator'
-  ], 'client');
-
   api.addFiles([
     'shared/serverMessages.js'
   ]);
