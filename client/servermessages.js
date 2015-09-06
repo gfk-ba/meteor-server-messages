@@ -1,0 +1,5 @@
+ServerMessages.prototype = {
+  listen: function () {
+
+  }
+};
