@@ -137,6 +137,7 @@
       "beforeEach": false,
       "afterEach": false,
       "ChannelListener": false,
-      "sinon": false
+      "sinon": false,
+      "Internals": false
     }
 }

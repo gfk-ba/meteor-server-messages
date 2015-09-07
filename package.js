@@ -1,6 +1,6 @@
 Package.describe({
   name: 'gfk:server-messages',
-  version: '1.0.2',
+  version: '1.1.0',
   summary: 'Add server to client mediator',
   git: 'git@github.com:gfk-ba/meteor-server-messages.git',
   documentation: 'README.md'
@@ -15,6 +15,7 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles([
+    'shared/internals.js',
     'shared/serverMessages.js'
   ]);
 
@@ -24,12 +25,17 @@ Package.onUse(function(api) {
   ], 'client');
 
   api.addFiles([
-    'server/serverMessages.js'
+    'server/serverMessages.js',
+    'server/publish.js'
   ], 'server');
 
   api.export('ServerMessages');
 
-  api.export('ChannelListener', {testOnly:true});
+  api.export([
+    'ChannelListener',
+    'Internals',
+    'publishMethods'
+  ], {testOnly:true});
 });
 
 Package.onTest(function(api) {
@@ -49,6 +55,7 @@ Package.onTest(function(api) {
   ], 'client');
 
   api.addFiles([
-    'test/server/serverMessages.test.js'
+    'test/server/serverMessages.test.js',
+    'test/server/publish.test.js'
   ], 'server');
 });

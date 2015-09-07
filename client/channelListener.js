@@ -1,10 +1,8 @@
 /* global ChannelListener:true*/
 
-ChannelListener = function (channel, publishName, collection) {
+ChannelListener = function (channel, collection) {
   this.handlers = [];
   this.channel = channel;
-
-  this._subscription = Meteor.subscribe(publishName, channel);
 
   this._observe = collection.find({
     channel: channel
@@ -18,7 +16,6 @@ ChannelListener.prototype.addHandler = function (handler) {
 };
 
 ChannelListener.prototype.destroy = function () {
-  this._subscription.stop();
   this._observe.stop();
 };
 
