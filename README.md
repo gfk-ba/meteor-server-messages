@@ -37,8 +37,6 @@ serverMessages.notify('serverMessage:info', 'test', 'test', {});
 
 Alternatively have a look at the example page.
 
-
-
 ## Contributing 
 
 All contributions are welcome! Please submit pull requests. *Please add tests* and make sure everything is green!
